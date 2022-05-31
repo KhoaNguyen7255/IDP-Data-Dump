@@ -19,8 +19,19 @@ public class exportdata : MonoBehaviour
     string URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeyCdx9sXwznBHESlnf5UdFRCI8zhSBFzsmRvLwsF9qrjU_5A/formResponse";
 
 
+    public void Send()
+    {
+        if (Answer1.text == "" || Answer2.text == "" || Answer3.text == "" || Answer4.text == "" || Answer5.text == "")
+        {
+            return;
+        }
+        StartCoroutine(Post(Answer1.text, Answer2.text, Answer3.text, Answer4.text, Answer5.text, Answer6.text));
+    }
+
     IEnumerator Post(string s1, string s2, string s3, string s4, string s5, string s6)
     {
+
+
         WWWForm form = new WWWForm();
         form.AddField("entry.836595576", s1);
         form.AddField("entry.1023523404", s2);
@@ -33,11 +44,6 @@ public class exportdata : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-    }
-
-    public void Send()
-    {
-        StartCoroutine(Post(Answer1.text, Answer2.text, Answer3.text, Answer4.text, Answer5.text, Answer6.text));
     }
 
 }
